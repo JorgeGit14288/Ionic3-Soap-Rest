@@ -70,6 +70,12 @@ export class LoginPage {
     });
     alert.present();
   }
+
+  onSubmit2(){
+    console.log("Se presiono submit 2");
+    console.log(this.soap.GetPeople());
+   
+  }
   
 
 }
