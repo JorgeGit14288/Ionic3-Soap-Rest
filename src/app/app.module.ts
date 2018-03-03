@@ -9,11 +9,18 @@ import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { RestPage } from '../pages/rest/rest';
+import { IngresarSolicitudPage } from '../pages/ingresar-solicitud/ingresar-solicitud'
+import { MostrarCapchaPage } from '../pages/mostrar-capcha/mostrar-capcha';
+import { ResultadoConsultaPage } from '../pages/resultado-consulta/resultado-consulta';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SoapProvider } from '../providers/soap/soap';
 import { HttpProvider } from '../providers/http/http';
+import { TseProvider } from '../providers/tse/tse';
+
+
 
 @NgModule({
   declarations: [
@@ -22,7 +29,10 @@ import { HttpProvider } from '../providers/http/http';
     ItemDetailsPage,
     ListPage,
     LoginPage,
-    RestPage
+    RestPage,
+    IngresarSolicitudPage,
+    MostrarCapchaPage,
+    ResultadoConsultaPage
   ],
   imports: [
     BrowserModule,
@@ -36,14 +46,18 @@ import { HttpProvider } from '../providers/http/http';
     ItemDetailsPage,
     ListPage,
     LoginPage,
-    RestPage
+    RestPage,
+    IngresarSolicitudPage,
+    MostrarCapchaPage,
+    ResultadoConsultaPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SoapProvider,
-    HttpProvider
+    HttpProvider,
+    TseProvider
   ]
 })
 export class AppModule {}

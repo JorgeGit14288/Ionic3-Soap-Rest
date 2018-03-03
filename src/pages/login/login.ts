@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component } from "@angular/core";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  AlertController
+} from "ionic-angular";
 
-import { SoapProvider } from '../../providers/soap/soap';
+import { HttpProvider } from "../../providers/http/http";
 
 /**
  * Generated class for the LoginPage page.
@@ -12,70 +17,65 @@ import { SoapProvider } from '../../providers/soap/soap';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: "page-login",
+  templateUrl: "login.html"
 })
 export class LoginPage {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private alertCtrl: AlertController,
+    private httpProv: HttpProvider
+  ) {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private soap: SoapProvider) {
-  }
-
-  public fechaNacimiento = {model: ""};
-  public dpi = {model:""};
+  public solicitud: any = {
+    codSys: "",
+    cui: "1840423991412",
+    fechaNacimiento: "1925-09-03"
+  };
+  public user: any = {
+    codigo: "",
+    imagen: "",
+    transaccion: ""
+  };
+  base64Image = "";
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    console.log("ionViewDidLoad LoginPage");
   }
 
-  onSubmit():void{ 
+  onSubmit(): void {
     console.log("Ha presionado el boton  Consultar");
-    if(this.dpi.model==null || this.dpi.model=='' || this.fechaNacimiento.model==null ||this.fechaNacimiento.model==''){
-      this.presentAlert();
-      
-    }
-    else{
       console.log("Informacion correcta");
-      this.soap.validarDpi(this.dpi.model, this.fechaNacimiento.model).then(res=>{
-        console.log("Respuesta del provider ", res);
-        if(res==true){
-          let alert = this.alertCtrl.create({
-            title: 'Aviso',
-            subTitle: 'Verificacion Exitosa',
-            buttons: ['Aceptar']
-          });
-          alert.present();
+      this.solicitud.codSys ="ef1b058bc386";
+      console.log("Se enviara ", this.solicitud);
+/*
+      this.httpProv.test().then(res=>{
+        console.log("Devolvio respuesta ", res)
+      }).catch(err=>{
+        console.log("Surgio un error ", err)
+      })
+*/
+      this.httpProv.getCapcha2(this.solicitud).then(res=>{
+        console.log("Devolvio data", res);
+          this.user = res;
+          this.base64Image = "data:image/jpeg;base64," + this.user.imagen;
+      }).catch(err=>{
+        console.log("Se devolvio un error");
+        console.error(err);
+      })
+      /*
+      this.httpProv.getCapcha(this.solicitud).subscribe(
+        data => {
+          console.log("Devolvio data", data);
+          this.user = data;
+          this.base64Image = "data:image/jpeg;base64," + this.user.imagen;
+        },
+        error => {
+          console.log("Se devolvio un error");
+          console.error(error);
         }
-        else {
-          let alert = this.alertCtrl.create({
-            title: 'Aviso',
-            subTitle: 'Los datos ingresados no son validos',
-            buttons: ['Aceptar']
-          });
-          alert.present();
-        }
-      
-      }).catch(function(err) {
-        console.log("La promesa retorno error");
-        this.presentAlert();
-    })
-
+      );
+      */
     }
-  }
-
-  presentAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Aviso',
-      subTitle: 'La información ingresada es incorrecta, por favor verifique',
-      buttons: ['Aceptar']
-    });
-    alert.present();
-  }
-
-  onSubmit2(){
-    console.log("Se presiono submit 2");
-    console.log(this.soap.GetPeople());
-   
-  }
-  
-
 }

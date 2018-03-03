@@ -9,6 +9,9 @@ import { RestPage } from '../pages/rest/rest';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { IngresarSolicitudPage } from '../pages/ingresar-solicitud/ingresar-solicitud'
+import { MostrarCapchaPage } from '../pages/mostrar-capcha/mostrar-capcha';
+import { ResultadoConsultaPage } from '../pages/resultado-consulta/resultado-consulta';
 
 
 @Component({
@@ -18,7 +21,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = LoginPage;
+  rootPage = IngresarSolicitudPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -34,6 +37,7 @@ export class MyApp {
       { title: 'Hello Ionic', component: HelloIonicPage },
       { title: 'My First List', component: ListPage },
       { title: 'Inicio', component: LoginPage },
+      { title: 'ConsultarVotacion', component: IngresarSolicitudPage },
       { title: 'Rest', component: RestPage }
     ];
   }
