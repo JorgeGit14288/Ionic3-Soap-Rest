@@ -16,7 +16,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding scroll="false">
     <ion-item>
         <ion-label color="primary">No CUI:</ion-label>
         <ion-input type="number" placeholder="XXXX XXXX XXXX" [(ngModel)]="solicitud.cui" Required></ion-input>
@@ -33,10 +33,5 @@
   <ion-label color="succesful">{{fechaNacimiento.model}}</ion-label>
   <button ion-button full (click)="onSubmit2()">Consultar soap</button>
 -->
-    <ion-item>
-        <img [src]="base64Image">
-        <h2>{{ user.codigo }}</h2>
-        <p>{{ user.transaccion }}</p>
-        <p>{{ user.imagen }}</p>
-    </ion-item>
+
 </ion-content>
