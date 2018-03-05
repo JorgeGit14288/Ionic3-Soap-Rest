@@ -15,6 +15,7 @@ import { SolicitudModel } from '../../models/solicitud-model';
 @Component({
   selector: 'page-ingresar-solicitud',
   templateUrl: 'ingresar-solicitud.html',
+
 })
 export class IngresarSolicitudPage {
 
