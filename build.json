@@ -1,0 +1,12 @@
+{
+    "android": {
+      "release": {
+        "keystore": "tuto.jks",
+        "storePassword": "123456",
+        "alias": "tutoKey",
+        "password" : "123456",
+        "keystoreType": ""
+      }
+    }
+  }
+  
