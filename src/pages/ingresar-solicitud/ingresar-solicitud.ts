@@ -27,7 +27,7 @@ export class IngresarSolicitudPage {
     console.log('ionViewDidLoad IngresarSolicitudPage');
   }
  // public resMd = new RespuestaModel('','',false);
-   public solicitud = new SolicitudModel('ef1b058bc386','1840423991412','1925-09-03');
+   public solicitud = new SolicitudModel('','','');
 
    public respuestaCapcha: any={
     status: "",
@@ -54,20 +54,29 @@ export class IngresarSolicitudPage {
         //cerramos el loader
         this.loader.dismiss();
         //enviamos los datos a otra pagina
-        // if (this.respuestaCapcha.muestraMensaje ==true){
-        //   let alert = this.alertCtrl.create({
-        //     title: 'Error',
-        //     //subTitle: '10% of battery r',
-        //     message: this.respuestaCapcha.mensaje,
-        //     buttons: ['Aceptar']
-        //   });
-        //   alert.present();
-        // }
-        // else {
+         if (this.respuestaCapcha.status =="0"){
+           let alert = this.alertCtrl.create({
+             title: 'Error',
+             //subTitle: '10% of battery r',
+             message: this.respuestaCapcha.mensaje,
+             buttons: [
+              {
+                text: 'Aceptar',
+                handler: () => {
+                  console.log('Cancel clicked');
+                  this.navCtrl.push(IngresarSolicitudPage)
+
+                }
+              }
+            ]
+           });
+           alert.present();
+         }
+         else {
           this.navCtrl.push(MostrarCapchaPage, {
             'capcha': this.respuestaCapcha.data
           })
-        //}
+        }
       }).catch(err=>{
         this.loader.dismiss();
         console.error(err);

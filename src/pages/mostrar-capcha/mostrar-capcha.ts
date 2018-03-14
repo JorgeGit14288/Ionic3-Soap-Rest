@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { TseProvider } from '../../providers/tse/tse';
 import { ResultadoConsultaPage } from '../resultado-consulta/resultado-consulta';
+import { IngresarSolicitudPage } from '../ingresar-solicitud/ingresar-solicitud';
 
 
 /**
@@ -36,9 +37,8 @@ export class MostrarCapchaPage {
   };
 
   public respuestaCapcha: any={
-    codigo: "",
+    status: "",
     mensaje: "",
-    muestraMensaje: false,
     data:{
       boleta :"",
       dpi :"",
@@ -76,18 +76,29 @@ export class MostrarCapchaPage {
     this.tseProv.validarCapcha(this.validarCapcha).then(res=>{
       this.respuestaCapcha=res;
       this.loader.dismiss();
-      if (this.respuestaCapcha.muestraMensaje ==true){
+      if (this.respuestaCapcha.status =="0"){
         let alert = this.alertCtrl.create({
           title: 'Error',
           //subTitle: '10% of battery r',
           message: this.respuestaCapcha.mensaje,
-          buttons: ['Aceptar']
+           buttons: [
+            {
+              text: 'Aceptar',
+              handler: () => {
+                console.log('Cancel clicked');
+                this.navCtrl.push(IngresarSolicitudPage)
+
+              }
+            }
+          ]
         });
         alert.present();
       }
+      else{
       this.navCtrl.push(ResultadoConsultaPage, {
         'res':this.respuestaCapcha.data
       })
+    }
 
     }).catch(err=>{
       this.loader.dismiss();
