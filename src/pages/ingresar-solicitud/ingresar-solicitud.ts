@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { TseProvider } from '../../providers/tse/tse';
 import { MostrarCapchaPage } from '../mostrar-capcha/mostrar-capcha';
-import { SolicitudModel } from '../../models/solicitud-model';
+
 
 /**
  * Generated class for the IngresarSolicitudPage page.
@@ -27,7 +27,11 @@ export class IngresarSolicitudPage {
     console.log('ionViewDidLoad IngresarSolicitudPage');
   }
  // public resMd = new RespuestaModel('','',false);
-   public solicitud = new SolicitudModel('ef1b058bc386','1957043550101','1962-07-07');
+   public solicitud : any ={
+    codSys : "",
+    cui: "",
+    fechaNacimiento: "",
+   }
 
    public respuestaCapcha: any={
     STATUS: "",
@@ -37,7 +41,18 @@ export class IngresarSolicitudPage {
   }
   public loader =null;
 
-  onSubmit(): void{
+
+  logForm(form) {
+    if(form.valid){
+      console.log(form.value)
+    }
+    else{
+      console.log("No valido");
+    }
+   
+  }
+  onSubmit(form): void{
+    if(form.valid){
       this.solicitud.codSys ="ef1b058bc386";
       //iniciamos el loader
         this.loader = this.loadingCtrl.create({
@@ -74,7 +89,6 @@ export class IngresarSolicitudPage {
         }
       }).catch(err=>{
         this.loader.dismiss();
-     
         let alert = this.alertCtrl.create({
           title: 'Error',
           //subTitle: '10% of battery r',
@@ -84,5 +98,17 @@ export class IngresarSolicitudPage {
         alert.present();
       })
     }
-
+    else{
+      console.log("Formulario no valido");
+      let alert = this.alertCtrl.create({
+        //title: 'Error',
+        //subTitle: '10% of battery r',
+        message: "Debe de ingresar la información solicitada",
+        buttons: ['Aceptar']
+      });
+      alert.present();
+    
+    }
   }
+     
+}

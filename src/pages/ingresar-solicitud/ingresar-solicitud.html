@@ -20,7 +20,9 @@
 
 
 <ion-content padding scroll="false">
+
     <ion-title text-center>Ingrese sus datos</ion-title>
+    <!-- 
     <ion-item>
         <ion-label color="primary">No CUI:</ion-label>
         <ion-input type="number" placeholder="XXXX XXXX XXXX" [(ngModel)]="solicitud.cui" Required></ion-input>
@@ -29,13 +31,17 @@
         <ion-label color="primary">Fecha de Nacimiento:</ion-label>
         <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="solicitud.fechaNacimiento" Required></ion-datetime>
     </ion-item>
-
-    <button ion-button full (click)="onSubmit()">Consultar</button>
-    <!--
-<ion-label color="warning">Resultado:</ion-label>
-  <ion-label color="succesful">{{dpi.model}} </ion-label>
-  <ion-label color="succesful">{{fechaNacimiento.model}}</ion-label>
-  <button ion-button full (click)="onSubmit2()">Consultar soap</button>
 -->
 
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+        <ion-item>
+            <ion-label color="primary">No CUI:</ion-label>
+            <ion-input name="cui" type="number" placeholder="XXXX XXXX XXXX" [(ngModel)]="solicitud.cui" required></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color="primary">Fecha de Nacimiento:</ion-label>
+            <ion-datetime name="fechaNacimiento" displayFormat="DD/MM/YYYY" [(ngModel)]="solicitud.fechaNacimiento" required></ion-datetime>
+        </ion-item>
+        <button ion-button type="submit" block [disabled]="solicitud.cui==''|| solicitud.fechaNacimiento==''"> Consultar </button>
+    </form>
 </ion-content>

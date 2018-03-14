@@ -26,5 +26,5 @@
         <ion-label color="primary">Ingrese el Capcha:</ion-label>
         <ion-input type="text" [(ngModel)]="codigoCap" Required></ion-input>
     </ion-item>
-    <button ion-button full (click)="onSubmit()">Consultar</button>
+    <button ion-button full (click)="onSubmit()" [disabled]="codigoCap==''">Validar</button>
 </ion-content>
