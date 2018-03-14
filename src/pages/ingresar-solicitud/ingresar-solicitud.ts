@@ -27,23 +27,18 @@ export class IngresarSolicitudPage {
     console.log('ionViewDidLoad IngresarSolicitudPage');
   }
  // public resMd = new RespuestaModel('','',false);
-   public solicitud = new SolicitudModel('','','');
+   public solicitud = new SolicitudModel('ef1b058bc386','1957043550101','1962-07-07');
 
    public respuestaCapcha: any={
-    status: "",
-    mensaje: "",
-    data:{
-      transaccion: "",
-      codigoCapcha: ""
-    }
+    STATUS: "",
+    USRMENSAJE: "",
+    NTRANS:"",
+    IMA:""
   }
   public loader =null;
 
   onSubmit(): void{
-
-    console.log("Ha presionado el boton  Consultar");
       this.solicitud.codSys ="ef1b058bc386";
-      console.log("Se enviara ", this.solicitud);
       //iniciamos el loader
         this.loader = this.loadingCtrl.create({
           content: "Cargando",
@@ -54,16 +49,16 @@ export class IngresarSolicitudPage {
         //cerramos el loader
         this.loader.dismiss();
         //enviamos los datos a otra pagina
-         if (this.respuestaCapcha.status =="0"){
+         if (this.respuestaCapcha.STATUS =="0"){
            let alert = this.alertCtrl.create({
              title: 'Error',
              //subTitle: '10% of battery r',
-             message: this.respuestaCapcha.mensaje,
+             message: this.respuestaCapcha.USRMENSAJE,
              buttons: [
               {
                 text: 'Aceptar',
                 handler: () => {
-                  console.log('Cancel clicked');
+              
                   this.navCtrl.push(IngresarSolicitudPage)
 
                 }
@@ -74,12 +69,12 @@ export class IngresarSolicitudPage {
          }
          else {
           this.navCtrl.push(MostrarCapchaPage, {
-            'capcha': this.respuestaCapcha.data
+            'capcha': this.respuestaCapcha
           })
         }
       }).catch(err=>{
         this.loader.dismiss();
-        console.error(err);
+     
         let alert = this.alertCtrl.create({
           title: 'Error',
           //subTitle: '10% of battery r',

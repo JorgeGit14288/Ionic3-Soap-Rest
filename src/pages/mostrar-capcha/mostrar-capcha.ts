@@ -22,9 +22,10 @@ import { IngresarSolicitudPage } from '../ingresar-solicitud/ingresar-solicitud'
 export class MostrarCapchaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tseProv: TseProvider, private alertCtrl: AlertController,  public loadingCtrl: LoadingController) {
-    this.capcha =navParams.data.capcha;
+    this.capcha.imagen =navParams.data.capcha.IMA;
+    this.capcha.transaccion  =navParams.data.capcha.NTRANS;
     this.base64Image = "data:image/jpeg;base64," + this.capcha.imagen;
-    //console.log("LLego capcha", this.capcha);
+    
   }
 
   ionViewDidLoad() {
@@ -37,26 +38,26 @@ export class MostrarCapchaPage {
   };
 
   public respuestaCapcha: any={
-    status: "",
-    mensaje: "",
-    data:{
-      boleta :"",
-      dpi :"",
-      nombre :"",
-      fechaNacimiento :"",
-      numeroMesa :"",
-      pagina :"",
-      linea :"",
-      centro :"",
-      direccion :"",
-      departamento :"",
-      municipio :"",
-    }
+    BOLETA:"",
+    CENTRO:"",
+    CODIGO:"",
+    DEPARTAMENTO:"",  
+    DETMENSAJE:"",
+    DIRECCION:"",
+    DPI:"",
+    FECHA_DE_NACIMIENTO:"",
+    LINEA:"",
+    MESA_DE_NUMERO:"",
+    MUNICIPIO:"",
+    NOMBRES_APELLIDOS:"",
+    PAGINA:"",
+    STATUS:"",
+    USRMENSAJE:"",
   }
   public validarCapcha :any ={
-    codSys : "",
-    codigoCapcha: "",
-    transaccion: ""
+    nTransac : "",
+    Guid: "",
+    Id: ""
   }
 
   public loader =null;
@@ -65,18 +66,19 @@ export class MostrarCapchaPage {
 
   onSubmit():void{
 
-    console.log("Enviando datos ")
-    this.validarCapcha.transaccion = this.capcha.transaccion;
-    this.validarCapcha.codigoSistema="ef1b058bc386";
-    this.validarCapcha.codigoCapcha = this.codigoCap;
+ 
+    this.validarCapcha.nTransac = this.capcha.transaccion;
+    this.validarCapcha.Id="ef1b058bc386";
+    this.validarCapcha.Guid = this.codigoCap;
     this.loader = this.loadingCtrl.create({
       content: "Cargando",
     });
     this.loader.present();
     this.tseProv.validarCapcha(this.validarCapcha).then(res=>{
       this.respuestaCapcha=res;
+     
       this.loader.dismiss();
-      if (this.respuestaCapcha.status =="0"){
+      if (this.respuestaCapcha.STATUS =="0"){
         let alert = this.alertCtrl.create({
           title: 'Error',
           //subTitle: '10% of battery r',
@@ -85,7 +87,7 @@ export class MostrarCapchaPage {
             {
               text: 'Aceptar',
               handler: () => {
-                console.log('Cancel clicked');
+          
                 this.navCtrl.push(IngresarSolicitudPage)
 
               }
@@ -96,13 +98,13 @@ export class MostrarCapchaPage {
       }
       else{
       this.navCtrl.push(ResultadoConsultaPage, {
-        'res':this.respuestaCapcha.data
+        'res':this.respuestaCapcha
       })
     }
 
     }).catch(err=>{
       this.loader.dismiss();
-      console.log("Surgio un error ", err)
+    
       let alert = this.alertCtrl.create({
         title: 'Error',
         //subTitle: '10% of battery r',

@@ -16,10 +16,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ResultadoConsultaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  
     this.datosVotacion = navParams.data.res;
   }
 
-  public datosVotacion: any ={
+  public datosVotacion2: any ={
     boleta :"",
     dpi :"",
     nombre :"",
@@ -31,6 +32,23 @@ export class ResultadoConsultaPage {
     direccion :"",
     departamento :"",
     municipio :"",
+  }
+  public datosVotacion : any ={
+    BOLETA:"",
+    CENTRO:"",
+    CODIGO:"",
+    DEPARTAMENTO:"",  
+    DETMENSAJE:"",
+    DIRECCION:"",
+    DPI:"",
+    FECHA_DE_NACIMIENTO:"",
+    LINEA:"",
+    MESA_DE_NUMERO:"",
+    MUNICIPIO:"",
+    NOMBRES_APELLIDOS:"",
+    PAGINA:"",
+    STATUS:"",
+    USRMENSAJE:"",
   }
 
 
