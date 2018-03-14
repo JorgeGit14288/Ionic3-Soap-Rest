@@ -13,18 +13,20 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-item>
-        <img [src]="base64Image">
-        <!--
+    <div class="div-form">
+        <ion-item>
+            <img [src]="base64Image">
+            <!--
         <h2>{{ capcha.codigo }}</h2>
         <p>{{ capcha.transaccion }}</p>
         <p>{{ capcha.imagen }}</p>
         -->
-    </ion-item>
+        </ion-item>
 
-    <ion-item>
-        <ion-label color="primary">Ingrese el Capcha:</ion-label>
-        <ion-input type="text" [(ngModel)]="codigoCap" Required></ion-input>
-    </ion-item>
-    <button ion-button full (click)="onSubmit()" [disabled]="codigoCap==''">Validar</button>
+        <ion-item>
+            <ion-label color="primary">Ingrese el Capcha:</ion-label>
+            <ion-input type="text" [(ngModel)]="codigoCap" Required></ion-input>
+        </ion-item>
+        <button ion-button full (click)="onSubmit()" [disabled]="codigoCap==''">Validar</button>
+    </div>
 </ion-content>
