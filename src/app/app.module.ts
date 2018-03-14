@@ -7,18 +7,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
-import { LoginPage } from '../pages/login/login';
-import { RestPage } from '../pages/rest/rest';
-import { IngresarSolicitudPage } from '../pages/ingresar-solicitud/ingresar-solicitud'
-import { MostrarCapchaPage } from '../pages/mostrar-capcha/mostrar-capcha';
-import { ResultadoConsultaPage } from '../pages/resultado-consulta/resultado-consulta';
+//import { LoginPage } from '../pages/login/login';
+//import { RestPage } from '../pages/rest/rest';
+//import { IngresarSolicitudPage } from '../pages/ingresar-solicitud/ingresar-solicitud'
+//import { MostrarCapchaPage } from '../pages/mostrar-capcha/mostrar-capcha';
+//import { ResultadoConsultaPage } from '../pages/resultado-consulta/resultado-consulta';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { SoapProvider } from '../providers/soap/soap';
 import { HttpProvider } from '../providers/http/http';
 import { TseProvider } from '../providers/tse/tse';
+import { IngresarSolicitudPageModule } from '../pages/ingresar-solicitud/ingresar-solicitud.module';
+import { LoginPageModule } from '../pages/login/login.module';
+import { RestPageModule } from '../pages/rest/rest.module';
+import { MostrarCapchaPageModule } from '../pages/mostrar-capcha/mostrar-capcha.module';
+import { ResultadoConsultaPageModule } from '../pages/resultado-consulta/resultado-consulta.module';
 
 
 
@@ -28,16 +32,22 @@ import { TseProvider } from '../providers/tse/tse';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    LoginPage,
-    RestPage,
-    IngresarSolicitudPage,
-    MostrarCapchaPage,
-    ResultadoConsultaPage
+    //LoginPage,
+    //RestPage,
+   // IngresarSolicitudPage,
+    //MostrarCapchaPage,
+    //ResultadoConsultaPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
+    IngresarSolicitudPageModule,
+    LoginPageModule,
+    RestPageModule,
+    MostrarCapchaPageModule,
+    ResultadoConsultaPageModule
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,17 +55,16 @@ import { TseProvider } from '../providers/tse/tse';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    LoginPage,
-    RestPage,
-    IngresarSolicitudPage,
-    MostrarCapchaPage,
-    ResultadoConsultaPage
+    //LoginPage,
+    //RestPage,
+   // IngresarSolicitudPage,
+    //MostrarCapchaPage,
+    //ResultadoConsultaPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SoapProvider,
     HttpProvider,
     TseProvider
   ]

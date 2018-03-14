@@ -30,13 +30,11 @@ export class IngresarSolicitudPage {
    public solicitud = new SolicitudModel('ef1b058bc386','1840423991412','1925-09-03');
 
    public respuestaCapcha: any={
-    codigo: "",
+    status: "",
     mensaje: "",
-    muestraMensaje: false,
     data:{
       transaccion: "",
-      codigoCapcha: "",
-      codigoSistema:"",
+      codigoCapcha: ""
     }
   }
   public loader =null;
@@ -56,18 +54,20 @@ export class IngresarSolicitudPage {
         //cerramos el loader
         this.loader.dismiss();
         //enviamos los datos a otra pagina
-        if (this.respuestaCapcha.muestraMensaje ==true){
-          let alert = this.alertCtrl.create({
-            title: 'Error',
-            //subTitle: '10% of battery r',
-            message: this.respuestaCapcha.mensaje,
-            buttons: ['Aceptar']
-          });
-          alert.present();
-        }
-        this.navCtrl.push(MostrarCapchaPage, {
-          'capcha': this.respuestaCapcha.data
-        })
+        // if (this.respuestaCapcha.muestraMensaje ==true){
+        //   let alert = this.alertCtrl.create({
+        //     title: 'Error',
+        //     //subTitle: '10% of battery r',
+        //     message: this.respuestaCapcha.mensaje,
+        //     buttons: ['Aceptar']
+        //   });
+        //   alert.present();
+        // }
+        // else {
+          this.navCtrl.push(MostrarCapchaPage, {
+            'capcha': this.respuestaCapcha.data
+          })
+        //}
       }).catch(err=>{
         this.loader.dismiss();
         console.error(err);
