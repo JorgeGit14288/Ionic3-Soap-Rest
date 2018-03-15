@@ -28,9 +28,10 @@ export class IngresarSolicitudPage {
   }
  // public resMd = new RespuestaModel('','',false);
    public solicitud : any ={
+    token:"9NM+D34KVLzIwjc2eOCcJ5R/Ooteu3/PjqjFDlfyIfayEH52PHGm8U7JHxk69vVI",
     codSys : "",
-    cui: "",
-    fechaNacimiento: "",
+    cui: "1957043550101",
+    fechaNacimiento: "1962-07-07",
    }
 
    public respuestaCapcha: any={
@@ -49,7 +50,7 @@ export class IngresarSolicitudPage {
     else{
       console.log("No valido");
     }
-   
+
   }
   onSubmit(form): void{
     if(form.valid){
@@ -73,7 +74,7 @@ export class IngresarSolicitudPage {
               {
                 text: 'Aceptar',
                 handler: () => {
-              
+
                   this.navCtrl.push(IngresarSolicitudPage)
 
                 }
@@ -107,8 +108,8 @@ export class IngresarSolicitudPage {
         buttons: ['Aceptar']
       });
       alert.present();
-    
+
     }
   }
-     
+
 }

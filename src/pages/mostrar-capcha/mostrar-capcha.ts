@@ -25,7 +25,7 @@ export class MostrarCapchaPage {
     this.capcha.imagen =navParams.data.capcha.IMA;
     this.capcha.transaccion  =navParams.data.capcha.NTRANS;
     this.base64Image = "data:image/jpeg;base64," + this.capcha.imagen;
-    
+
   }
 
   ionViewDidLoad() {
@@ -41,7 +41,7 @@ export class MostrarCapchaPage {
     BOLETA:"",
     CENTRO:"",
     CODIGO:"",
-    DEPARTAMENTO:"",  
+    DEPARTAMENTO:"",
     DETMENSAJE:"",
     DIRECCION:"",
     DPI:"",
@@ -55,6 +55,7 @@ export class MostrarCapchaPage {
     USRMENSAJE:"",
   }
   public validarCapcha :any ={
+    token:"9NM+D34KVLzIwjc2eOCcJ5R/Ooteu3/PjqjFDlfyIfayEH52PHGm8U7JHxk69vVI",
     nTransac : "",
     Guid: "",
     Id: ""
@@ -66,7 +67,7 @@ export class MostrarCapchaPage {
 
   onSubmit():void{
 
- 
+
     this.validarCapcha.nTransac = this.capcha.transaccion;
     this.validarCapcha.Id="ef1b058bc386";
     this.validarCapcha.Guid = this.codigoCap;
@@ -76,7 +77,7 @@ export class MostrarCapchaPage {
     this.loader.present();
     this.tseProv.validarCapcha(this.validarCapcha).then(res=>{
       this.respuestaCapcha=res;
-     
+
       this.loader.dismiss();
       if (this.respuestaCapcha.STATUS =="0"){
         let alert = this.alertCtrl.create({
@@ -87,7 +88,7 @@ export class MostrarCapchaPage {
             {
               text: 'Aceptar',
               handler: () => {
-          
+
                 this.navCtrl.push(IngresarSolicitudPage)
 
               }
@@ -104,7 +105,7 @@ export class MostrarCapchaPage {
 
     }).catch(err=>{
       this.loader.dismiss();
-    
+
       let alert = this.alertCtrl.create({
         title: 'Error',
         //subTitle: '10% of battery r',
